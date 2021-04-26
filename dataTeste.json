@@ -1,0 +1,17 @@
+{
+    "id": 2200461,
+    "criticidade": 0,
+    "dataAtivaLocal": 1619443799969,
+    "dataAtivaRemoto": 1619442945,
+    "dataDesativaLocal": 1619444254784,
+    "dataDesativaRemoto": 1619443400,
+    "dataUsuarioReconheceu": null,
+    "texto": "GMG Parado",
+    "tipo": 1,
+    "dispositivo_id": 1573,
+    "local_id": 439,
+    "ocorrenciaTemplate_id": 6242,
+    "site_id": 354,
+    "usuarioReconheceu_id": null,
+    "produtoOcorrencia_id": null
+}

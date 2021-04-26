@@ -1,0 +1,7 @@
+﻿{
+    "waitForConnections": true,
+    "connectionLimit": 8000000,
+    "queueLimit": 90000000,
+    "botToken":"1736975913:AAHCBtlidd_w7kFLuwlq9aUkuRydPbqvdi4",
+    "chatId":"-401496121"
+  }

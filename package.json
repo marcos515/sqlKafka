@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "exec": "^0.2.1",
+    "kafka-node": "^5.0.0",
+    "kafka-streams": "^5.0.0",
+    "kafkajs": "^1.15.0",
+    "moment": "^2.29.1",
+    "mysql2": "^2.2.5",
+    "node-rdkafka": "^2.10.1",
+    "restify": "^8.5.1",
+    "yargs": "^16.2.0"
+  }
+}

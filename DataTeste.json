@@ -1,0 +1,166 @@
+{
+    "ts": 1617706334,
+    "dispositivoId": 2038,
+    "values": [
+        {
+            "name": "ModoWeb",
+            "value": "38920",
+            "unity": "---"
+        },
+        {
+            "name": "TensaoRedeL1-L2",
+            "value": "381",
+            "unity": "V"
+        },
+        {
+            "name": "TensaoRedeL2-L3",
+            "value": "379",
+            "unity": "V"
+        },
+        {
+            "name": "TensaoRedeL3-L1",
+            "value": "379",
+            "unity": "V"
+        },
+        {
+            "name": "Frequencia Rede",
+            "value": "60.0",
+            "unity": "Hz"
+        },
+        {
+            "name": "PotAtivaTotalRede",
+            "value": "0",
+            "unity": "kW"
+        },
+        {
+            "name": "PotReativaTotalRede",
+            "value": "0",
+            "unity": "kVAr"
+        },
+        {
+            "name": "FatorPotenciaRede",
+            "value": "0.0",
+            "unity": "FP"
+        },
+        {
+            "name": "EnergiaAtivaPositivaTotalRede",
+            "value": "0",
+            "unity": "kWh+"
+        },
+        {
+            "name": "EnergiaAtivaNegativaTotalRede",
+            "value": "0",
+            "unity": "kWh-"
+        },
+        {
+            "name": "TensaoGMGL1-L2",
+            "value": "0",
+            "unity": "V"
+        },
+        {
+            "name": "TensaoGMGL2-L3",
+            "value": "0",
+            "unity": "V"
+        },
+        {
+            "name": "TensaoGMGL3-L1",
+            "value": "0",
+            "unity": "V"
+        },
+        {
+            "name": "FrequenciaGMGL1",
+            "value": "0.0",
+            "unity": "Hz"
+        },
+        {
+            "name": "CorrenteGMGL1",
+            "value": "0",
+            "unity": "A"
+        },
+        {
+            "name": "CorrenteGMGL2",
+            "value": "0",
+            "unity": "A"
+        },
+        {
+            "name": "CorrenteGMGL3",
+            "value": "0",
+            "unity": "A"
+        },
+        {
+            "name": "PotAtivaTotalGMG",
+            "value": "0",
+            "unity": "kW"
+        },
+        {
+            "name": "PotReativaTotalGMG",
+            "value": "0",
+            "unity": "kVAr"
+        },
+        {
+            "name": "PotAparenteTotalGMG",
+            "value": "0",
+            "unity": "kVA"
+        },
+        {
+            "name": "FatorPotenciaGMG",
+            "value": "0.0",
+            "unity": "FP"
+        },
+        {
+            "name": "TensaoBateria",
+            "value": "13.5",
+            "unity": "Vcc"
+        },
+        {
+            "name": "TemperaturaMotor",
+            "value": "-1",
+            "unity": "°C"
+        },
+        {
+            "name": "ConsumoInstantaneoComb",
+            "value": "0.0",
+            "unity": "L/h"
+        },
+        {
+            "name": "EnergiaAtivaTotalGMG",
+            "value": "548",
+            "unity": "kWh"
+        },
+        {
+            "name": "TempoTotalFunc",
+            "value": "21",
+            "unity": "h"
+        },
+        {
+            "name": "TotalFuel",
+            "value": "0",
+            "unity": "Litros"
+        },
+        {
+            "name": "PressaoOleo",
+            "value": "-0.1",
+            "unity": "bar"
+        },
+        {
+            "name": "RPM",
+            "value": "0",
+            "unity": "RPM"
+        },
+        {
+            "name": "Partidas",
+            "value": "82",
+            "unity": "---"
+        },
+        {
+            "name": "LoadSpeed",
+            "value": "0.0",
+            "unity": "%"
+        },
+        {
+            "name": "fuelLevel",
+            "value": "85",
+            "unity": "%"
+        }
+    ]
+}

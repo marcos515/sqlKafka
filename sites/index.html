@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/sites/css/index.css">
+    <title>SQL -> Kafka</title>
+</head>
+
+<body>
+    <h1>Send Data of vmi AWS SP Info Histórico to Kafka</h1>
+
+    <table>
+        <tr>
+            <th><label for="myTextarea">Main Log:</label></th>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <textarea name="" id="myTextarea" cols="30" rows="30"
+                        placeholder="O log aparecerá aqui:"></textarea>
+                    <p>Automatic Scrool Down?: <input type="checkbox" name="" id="che"></p>
+                    <button onclick="clearLog()">Clear All Log</button>
+                </div>
+            </td>
+
+
+            <td>
+                <div>
+                    <p><strong><font Size="7">Kafka Config</font></strong></p>
+                    <p><font Size="7">Kafka host:</font><input type="text" name="" placeholder="192.168.18.48:9092" id="kafkaip"><font Size="7"> Kafka Topic:</font><input type="text" name="" placeholder="data" id="kafkatopic"></p>
+                    
+                    <p><b>Insira as opções, pressione em executar e aguarde.</b></p>
+                    <p>Data Início: <input type="datetime-local" id="dataInicio" name="data Inicio"></p>
+                    <p>Data Fim: <input type="datetime-local" id="dataFim" name="data Fim"></p>
+                    <p>Número de threads: <input placeholder="Número de threads: " type="number" name="" id="threads">
+                    </p>
+                    <p>Target Dispositivo Id?: <input type="checkbox" id="target" onchange="visible()" name="horns">
+                        <input placeholder="Target Id:" type="text" name=""
+                            style="text-align: left; visibility: hidden;" id="tid">
+                    </p>
+
+                    <button onclick="send()">Executar</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+
+    <script>
+        receive()
+        setInterval(receive, 1000)
+        function visible() {
+            let a = document.getElementById('tid')
+            a.style.visibility = a.style.visibility == 'hidden' ? "visible" : "hidden"
+        }
+
+        function clearLog() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "clearLog");
+            xhr.setRequestHeader("Content-Type", "text/plain");
+            xhr.send(null);
+        }
+
+        function send() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "command");
+            xhr.setRequestHeader("Content-Type", "text/plain");
+            let data = {
+                kafkaHost: document.getElementById("kafkaip").value,
+                kafkaTopic: document.getElementById("kafkatopic").value,
+                start: new Date(document.getElementById('dataInicio').value).getTime() / 1000,
+                end: new Date(document.getElementById('dataFim').value).getTime() / 1000,
+                threads: document.getElementById('threads').value
+            }
+            if (document.getElementById('target').checked) {
+                data.dispositivoId = document.getElementById('tid').value
+            }
+            console.log(data)
+            xhr.send(JSON.stringify(data));
+        }
+
+        function receive() {
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === 4) {
+                    loadLog(this.responseText)
+                }
+            });
+
+            xhr.open("POST", "log");
+            xhr.setRequestHeader("Content-Type", "text/plain");
+            xhr.send(null);
+        }
+
+        function loadLog(logValue) {
+            logTa = document.getElementById("myTextarea")
+            logTa.value = logValue;
+            if (document.getElementById("che").checked) {
+                scrollLogToBottom()
+            }
+        }
+
+        function scrollLogToBottom() {
+            logTa = document.getElementById("myTextarea")
+            logTa.scrollTop = logTa.scrollHeight;
+        }
+    </script>
+</body>
+
+</html>
