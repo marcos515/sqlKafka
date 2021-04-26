@@ -4,10 +4,9 @@ const exec = require('exec');
 const restify = require('restify')
 const mysql = require('mysql2');
 const config = require('./files/config.json')
-var args = yargs.argv
 const botLog = require("./files/sendLog")
-var globalLog = ""
 const axios = require("axios")
+
 const server = restify.createServer({
   name: 'SqlKafka',
   version: '1.0.0',
@@ -18,6 +17,8 @@ const server = restify.createServer({
   }
 });
 
+var args = yargs.argv
+var globalLog = ""
 
 var options = {
   host: process.env.dbHost,
@@ -48,7 +49,7 @@ server.listen(args.port || 3000, async function () {
 
 
 server.on('NotFound', function (req, res, err, cb) {
-  res.send(404, fs.readFileSync('./sites/error.html', 'utf8'))
+  res.send(404, fs.readFileSync('./files/sites/error.html', 'utf8'))
 });
 
 server.use(restify.plugins.bodyParser({ mapParams: true }));
@@ -57,7 +58,7 @@ server.use(restify.plugins.bodyParser({ mapParams: true }));
 server.get('/', (req, res) => {
   res.header("Content-Type", "text/html")
   res.header("Access-Control-Allow-Origin", "*")
-  res.send(200, fs.readFileSync('./sites/indexAlarme.html', 'utf8'))
+  res.send(200, fs.readFileSync('./files/sites/indexAlarme.html', 'utf8'))
 });
 
 server.post('/log', (req, res) => {

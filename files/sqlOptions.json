@@ -1,5 +1,5 @@
-﻿{
+{
     "waitForConnections": true,
     "connectionLimit": 8000000,
     "queueLimit": 90000000
-  }
+}

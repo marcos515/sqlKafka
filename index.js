@@ -4,10 +4,11 @@ const exec = require('exec');
 const restify = require('restify')
 const mysql = require('mysql2');
 const config = require('./files/config.json')
-var args = yargs.argv
-const botLog = require("./files/sendLog")
-var globalLog = ""
 const axios = require("axios")
+const botLog = require("./files/sendLog")
+
+
+
 const server = restify.createServer({
   name: 'SqlKafka',
   version: '1.0.0',
@@ -17,6 +18,9 @@ const server = restify.createServer({
     }
   }
 });
+
+var args = yargs.argv
+var globalLog = ""
 
 
 var options = {
@@ -44,7 +48,7 @@ function atualizaTemplateInfoFile() {
 atualizaTemplateInfoFile().then((value) => {
   fs.writeFileSync('./files/exportTemplateInfo.json', JSON.stringify(value))
   wLog(`Sucesso ao atualizar os dados da tabela Template info`);
-  //console.log(value)
+ 
 }).then((value) => {
   server.listen(args.port || 3000, async function () {
     wLog(`Servidor SQL Info Histórico -> Kafka online em: "http://${await getIPAddress()}:${args.port || 3000}"`);
@@ -55,7 +59,7 @@ atualizaTemplateInfoFile().then((value) => {
 
 
 server.on('NotFound', function (req, res, err, cb) {
-  res.send(404, fs.readFileSync('./sites/error.html', 'utf8'))
+  res.send(404, fs.readFileSync('./files/sites/error.html', 'utf8'))
 });
 
 server.use(restify.plugins.bodyParser({ mapParams: true }));
@@ -64,7 +68,7 @@ server.use(restify.plugins.bodyParser({ mapParams: true }));
 server.get('/', (req, res) => {
   res.header("Content-Type", "text/html")
   res.header("Access-Control-Allow-Origin", "*")
-  res.send(200, fs.readFileSync('./sites/index.html', 'utf8'))
+  res.send(200, fs.readFileSync('./files/sites/index.html', 'utf8'))
 });
 
 server.post('/log', (req, res) => {
@@ -93,14 +97,14 @@ function ValidCommand(json) {
   if (validValue(json.start) && validValue(json.end) && validValue(json.threads) && validValue(json.kafkaHost) && validValue(json.kafkaTopic)) {
     if (json.dispositivoId !== undefined) {
       if (validValue(json.dispositivoId)) {
-        wLog("valido")
-        main(json.start, json.end, json.threads, json.kafkaHost, json.kafkaTopic, json.dispositivoId)
+        //wLog("valido")
+        runthreads(json.start, json.end, json.threads, json.kafkaHost, json.kafkaTopic, json.dispositivoId)
       } else {
         wLog("Dispositivo id invalido")
       }
     } else {
-      wLog("valido")
-      main(json.start, json.end, json.threads, json.kafkaHost, json.kafkaTopic)
+      //wLog("valido")
+      runthreads(json.start, json.end, json.threads, json.kafkaHost, json.kafkaTopic)
     }
 
   } else {
@@ -115,7 +119,7 @@ function validValue(value) {
   }
 }
 
-function main(startp, endp, robotsp, kafkaHost, kafkaTopic, targetId) {
+function runthreads(startp, endp, robotsp, kafkaHost, kafkaTopic, targetId) {
   let start = (startp * 1000)
   let end = (endp * 1000)
   let numRobots = robotsp
@@ -185,7 +189,7 @@ async function getIPAddress() {
 
 function wLog(msg) {
   console.log(msg)
-  botLog("** SQL --> Kafka **\n"+msg)
+  botLog("** SQL Info Histórico --> Kafka **\n"+msg)
   globalLog += msg + "\n";
 }
 
